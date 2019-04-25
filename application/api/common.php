@@ -9,6 +9,7 @@ function json_return($data=[],$code=1,$msg='操作成功'){
     return json($return)->send();
 }
 
+//行业
 function getIndustry($id = 'all'){
 	$industry_list = [
 		0=>[
@@ -63,6 +64,7 @@ function getIndustry($id = 'all'){
 	}
 }
 
+//公司性质
 function getCompanyType($id = 'all'){
 	$company_type_list = [
 		0=>[
@@ -105,44 +107,84 @@ function getCompanyType($id = 'all'){
 	}
 }
 
+//公司规模
 function getCompanyScale($id = 'all'){
-	$company_scale_list = [
-		0=>[
-			'company_scale_id'=>0,
-			'company_scale_name'=>'不限',
-		],
-		1=>[
-			'company_scale_id'=>1,
-			'company_scale_name'=>'少于50人',
-		],
-		2=>[
-			'company_scale_id'=>2,
-			'company_scale_name'=>'50-150人',
-		],
-		3=>[
-			'company_scale_id'=>3,
-			'company_scale_name'=>'150-500人',
-		],
-		4=>[
-			'company_scale_id'=>4,
-			'company_scale_name'=>'500-1000人',
-		],
-		5=>[
-			'company_scale_id'=>5,
-			'company_scale_name'=>'1000-5000人',
-		],
-		6=>[
-			'company_scale_id'=>6,
-			'company_scale_name'=>'5000-10000人',
-		],
-		7=>[
-			'company_scale_id'=>7,
-			'company_scale_name'=>'10000人以上',
-		],
-	];
-	if($id=='all'){
-		return $company_scale_list;
-	}else{
-		return $company_scale_list[$id]['company_scale_name'];
-	}
+    $company_scale_list = [
+        0=>[
+            'company_scale_id'=>0,
+            'company_scale_name'=>'不限',
+        ],
+        1=>[
+            'company_scale_id'=>1,
+            'company_scale_name'=>'少于50人',
+        ],
+        2=>[
+            'company_scale_id'=>2,
+            'company_scale_name'=>'50-150人',
+        ],
+        3=>[
+            'company_scale_id'=>3,
+            'company_scale_name'=>'150-500人',
+        ],
+        4=>[
+            'company_scale_id'=>4,
+            'company_scale_name'=>'500-1000人',
+        ],
+        5=>[
+            'company_scale_id'=>5,
+            'company_scale_name'=>'1000-5000人',
+        ],
+        6=>[
+            'company_scale_id'=>6,
+            'company_scale_name'=>'5000-10000人',
+        ],
+        7=>[
+            'company_scale_id'=>7,
+            'company_scale_name'=>'10000人以上',
+        ],
+    ];
+    if($id=='all'){
+        return $company_scale_list;
+    }else{
+        return $company_scale_list[$id]['company_scale_name'];
+    }
+}
+
+//薪资
+function getSalary($id = 'all'){
+    $salary_list = [
+        0=>[
+            'salary_id'=>0,
+            'salary_name'=>'不限',
+        ],
+        1=>[
+            'salary_id'=>1,
+            'salary_name'=>'1千以下',
+        ],
+        2=>[
+            'salary_id'=>2,
+            'salary_name'=>'1-2千',
+        ],
+        3=>[
+            'salary_id'=>3,
+            'salary_name'=>'2-3千',
+        ],
+        4=>[
+            'salary_id'=>4,
+            'salary_name'=>'3-4千',
+        ],
+        5=>[
+            'salary_id'=>5,
+            'salary_name'=>'4-5千',
+        ],
+        6=>[
+            'salary_id'=>6,
+            'salary_name'=>'5千以上',
+        ],
+    ];
+    if($id=='all'){
+        return $salary_list;
+    }else{
+        return $salary_list[$id]['salary_name'];
+    }
 }

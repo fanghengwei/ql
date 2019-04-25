@@ -9,6 +9,11 @@ class Position extends Controller
 {
     public function getPositionList(){
         $PositionModel = new PositionModel();
+        $where = [];
+        $where['status']=1;
+//        if(){
+//
+//        }
         $list = $PositionModel->where(['status'=>1])->order('sort desc,create_time desc')->limit(20)->select();
         json_return($list);
     }
@@ -18,6 +23,7 @@ class Position extends Controller
     		'industry' 		=> getIndustry(),
     		'company_typy' 	=> getCompanyType(),
     		'company_scale' => getCompanyScale(),
+            'salary'        => getSalary(),
     	];
     	json_return($search_list);
     }
