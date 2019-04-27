@@ -9,7 +9,7 @@ class Seminar extends Controller
 {
     public function getSeminarList(){
         $SeminarModel = new SeminarModel();
-        $list = $SeminarModel->where([])->order('weigh desc,create_time desc')->limit(20)->select();
+        $list = $SeminarModel->with(['school'])->where([])->order('weigh desc,create_time desc')->limit(20)->select();
         json_return($list);
     }
 
