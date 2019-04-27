@@ -30,7 +30,7 @@ class Position extends Controller
 
     public function getPosition(){
         $PositionModel = new PositionModel();
-        $item = $PositionModel->where(['id'=>input('position_id')])->find();
+        $item = $PositionModel->where(['id'=>input('position_id')])->with('company')->find();
         json_return($item);
     }
 }
