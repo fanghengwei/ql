@@ -9,7 +9,13 @@ class Seminar extends Controller
 {
     public function getSeminarList(){
         $SeminarModel = new SeminarModel();
-        $list = $SeminarModel->where(['status'=>1])->order('sort desc,create_time desc')->limit(20)->select();
+        $list = $SeminarModel->where([])->order('weigh desc,create_time desc')->limit(20)->select();
         json_return($list);
+    }
+
+    public function getSeminar(){
+        $SeminarModel = new SeminarModel();
+        $item = $SeminarModel->where(['seminar.id'=>input('seminar_id')])->find();
+        json_return($item);
     }
 }
