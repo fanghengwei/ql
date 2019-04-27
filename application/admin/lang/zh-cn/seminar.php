@@ -11,10 +11,9 @@ return [
     'Create_time'  =>  '创建时间',
     'Update_time'  =>  '更新时间',
     'School.id'  =>  '学校表id',
-    'School.school_name'  =>  '学校名称',
-    'School.school_logo'  =>  '学校logo',
-    'School.sort'  =>  '排序（0-999大的靠前',
-    'School.status'  =>  '状态：1正常-1删除',
+    'School.name'  =>  '学校名称',
+    'School.image'  =>  '学校logo',
+    'School.weigh'  =>  '排序（0-999大的靠前）',
     'School.create_time'  =>  '创建时间',
     'School.update_time'  =>  '更新时间'
 ];

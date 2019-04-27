@@ -34,10 +34,9 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                         {field: 'create_time', title: __('Create_time'), operate:'RANGE', addclass:'datetimerange'},
                         {field: 'update_time', title: __('Update_time'), operate:'RANGE', addclass:'datetimerange'},
                         {field: 'school.id', title: __('School.id')},
-                        {field: 'school.school_name', title: __('School.school_name')},
-                        {field: 'school.school_logo', title: __('School.school_logo')},
-                        {field: 'school.sort', title: __('School.sort')},
-                        {field: 'school.status', title: __('School.status')},
+                        {field: 'school.name', title: __('School.name')},
+                        {field: 'school.image', title: __('School.image'), formatter: Table.api.formatter.image},
+                        {field: 'school.weigh', title: __('School.weigh')},
                         {field: 'school.create_time', title: __('School.create_time'), operate:'RANGE', addclass:'datetimerange'},
                         {field: 'school.update_time', title: __('School.update_time'), operate:'RANGE', addclass:'datetimerange'},
                         {field: 'operate', title: __('Operate'), table: table, events: Table.api.events.operate, formatter: Table.api.formatter.operate}
