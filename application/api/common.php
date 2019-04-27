@@ -6,7 +6,7 @@ function json_return($data=[],$code=1,$msg='操作成功'){
         'msg'=>$msg,
         'data'=>$data,
     ];
-    return json($return)->send();
+    exit(json($return)->send());
 }
 
 //行业

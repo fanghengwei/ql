@@ -14,7 +14,7 @@ class Position extends Controller
 //        if(){
 //
 //        }
-        $list = $PositionModel->where(['status'=>1])->order('sort desc,create_time desc')->limit(20)->select();
+        $list = $PositionModel->where([])->order('sort desc,create_time desc')->limit(20)->select();
         json_return($list);
     }
 
@@ -26,5 +26,11 @@ class Position extends Controller
             'salary'        => getSalary(),
     	];
     	json_return($search_list);
+    }
+
+    public function getPosition(){
+        $PositionModel = new PositionModel();
+        $item = $PositionModel->where(['id'=>input('position_id')])->find();
+        json_return($item);
     }
 }
