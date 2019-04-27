@@ -7,6 +7,6 @@ use think\Model;
 class Position extends Model
 {
     public function company(){
-        return $this->hasOne('Company','id');
+        return $this->belongsTo('Company', 'company_id', 'id', [], 'LEFT')->setEagerlyType(0);
     }
 }

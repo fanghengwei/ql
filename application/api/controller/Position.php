@@ -10,11 +10,7 @@ class Position extends Controller
     public function getPositionList(){
         $PositionModel = new PositionModel();
         $where = [];
-        $where['status']=1;
-//        if(){
-//
-//        }
-        $list = $PositionModel->where([])->order('sort desc,create_time desc')->limit(20)->select();
+        $list = $PositionModel->with(['company'])->where($where)->order('weigh desc,create_time desc')->limit(20)->select();
         json_return($list);
     }
 
@@ -30,7 +26,7 @@ class Position extends Controller
 
     public function getPosition(){
         $PositionModel = new PositionModel();
-        $item = $PositionModel->where(['id'=>input('position_id')])->with('company')->find();
+        $item = $PositionModel->with(['company'])->where(['position.id'=>input('position_id')])->find();
         json_return($item);
     }
 }

@@ -23,6 +23,7 @@ class Position extends Backend
         parent::_initialize();
         $this->model = new \app\admin\model\Position;
         $this->view->assign("industryList", $this->model->getIndustryList());
+        $this->view->assign("typeList", $this->model->getTypeList());
     }
     
     /**
