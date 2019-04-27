@@ -15,7 +15,7 @@ class Seminar extends Controller
 
     public function getSeminar(){
         $SeminarModel = new SeminarModel();
-        $item = $SeminarModel->where(['seminar.id'=>input('seminar_id')])->find();
+        $item = $SeminarModel->with(['school'])->where(['seminar.id'=>input('seminar_id')])->find();
         json_return($item);
     }
 }
