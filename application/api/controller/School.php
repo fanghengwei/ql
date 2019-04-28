@@ -7,6 +7,8 @@ use app\api\model\School as SchoolModel;
 
 class School extends Api
 {
+    protected $noNeedRight = ['getSchoolList','getSchool'];
+
     public function getSchoolList(){
         $SchoolModel = new SchoolModel();
         $list = $SchoolModel->where([])->order('weigh desc,create_time desc')->limit(20)->select();

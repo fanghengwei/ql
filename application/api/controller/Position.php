@@ -7,6 +7,8 @@ use app\api\model\Position as PositionModel;
 
 class Position extends Api
 {
+    protected $noNeedRight = ['getPositionList','getPositionSearchList','getPosition'];
+
     public function getPositionList(){
         $PositionModel = new PositionModel();
         $where = [];

@@ -7,6 +7,8 @@ use app\api\model\Company as CompanyModel;
 
 class Company extends Api
 {
+    protected $noNeedRight = ['getCompanyList','getCompany'];
+
     public function getCompanyList(){
         $CompanyModel = new CompanyModel();
         $list = $CompanyModel->where([])->order('weigh desc,create_time desc')->limit(20)->select();

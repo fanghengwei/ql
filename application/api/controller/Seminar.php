@@ -7,6 +7,8 @@ use app\api\model\Seminar as SeminarModel;
 
 class Seminar extends Api
 {
+    protected $noNeedRight = ['getSeminarList','getSeminar'];
+
     public function getSeminarList(){
         $SeminarModel = new SeminarModel();
         $list = $SeminarModel->with(['school'])->where([])->order('weigh desc,create_time desc')->limit(20)->select();
