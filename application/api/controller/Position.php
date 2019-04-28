@@ -2,10 +2,10 @@
 
 namespace app\api\controller;
 
-use think\Controller;
+use app\common\controller\Api;
 use app\api\model\Position as PositionModel;
 
-class Position extends Controller
+class Position extends Api
 {
     public function getPositionList(){
         $PositionModel = new PositionModel();

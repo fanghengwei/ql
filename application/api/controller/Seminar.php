@@ -2,10 +2,10 @@
 
 namespace app\api\controller;
 
-use think\Controller;
+use app\common\controller\Api;
 use app\api\model\Seminar as SeminarModel;
 
-class Seminar extends Controller
+class Seminar extends Api
 {
     public function getSeminarList(){
         $SeminarModel = new SeminarModel();

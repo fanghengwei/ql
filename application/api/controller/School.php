@@ -2,10 +2,10 @@
 
 namespace app\api\controller;
 
-use think\Controller;
+use app\common\controller\Api;
 use app\api\model\School as SchoolModel;
 
-class School extends Controller
+class School extends Api
 {
     public function getSchoolList(){
         $SchoolModel = new SchoolModel();

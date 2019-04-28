@@ -2,10 +2,10 @@
 
 namespace app\api\controller;
 
-use think\Controller;
+use app\common\controller\Api;
 use app\api\model\Company as CompanyModel;
 
-class Company extends Controller
+class Company extends Api
 {
     public function getCompanyList(){
         $CompanyModel = new CompanyModel();
