@@ -12,12 +12,12 @@ class Company extends Api
     public function getCompanyList(){
         $CompanyModel = new CompanyModel();
         $list = $CompanyModel->where([])->order('weigh desc,create_time desc')->limit(20)->select();
-        json_return($list);
+        $this->success('返回成功', $list);
     }
 
     public function getCompany(){
         $CompanyModel = new CompanyModel();
         $item = $CompanyModel->where(['id'=>input('company_id')])->find();
-        json_return($item);
+        $this->success('返回成功', $item);
     }
 }

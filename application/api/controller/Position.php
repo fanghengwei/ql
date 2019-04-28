@@ -13,7 +13,7 @@ class Position extends Api
         $PositionModel = new PositionModel();
         $where = [];
         $list = $PositionModel->with(['company'])->where($where)->order('weigh desc,create_time desc')->limit(20)->select();
-        json_return($list);
+        $this->success('返回成功', $list);
     }
 
     public function getPositionSearchList(){
@@ -23,12 +23,12 @@ class Position extends Api
     		'company_scale' => getCompanyScale(),
             'salary'        => getSalary(),
     	];
-    	json_return($search_list);
+        $this->success('返回成功', $search_list);
     }
 
     public function getPosition(){
         $PositionModel = new PositionModel();
         $item = $PositionModel->with(['company'])->where(['position.id'=>input('position_id')])->find();
-        json_return($item);
+        $this->success('返回成功', $item);
     }
 }
