@@ -27,7 +27,8 @@ class User extends Api
      */
     public function index()
     {
-        $this->success('', ['welcome' => $this->auth->nickname]);
+        $data = ['userinfo' => $this->auth->getUserinfo()];
+        $this->success('', $data);
     }
 
     /**
