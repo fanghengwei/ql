@@ -1,7 +1,7 @@
 <?php
 
 return array (
-  'name' => 'FastAdmin',
+  'name' => '校招管理后台',
   'beian' => '',
   'cdnurl' => '',
   'version' => '1.0.1',
@@ -10,9 +10,8 @@ return array (
   'languages' => 
   array (
     'backend' => 'zh-cn',
-    'frontend' => 'zh-cn',
   ),
-  'fixedpage' => 'dashboard',
+  'fixedpage' => 'position',
   'categorytype' => 
   array (
     'default' => 'Default',
