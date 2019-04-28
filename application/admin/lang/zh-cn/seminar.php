@@ -7,6 +7,7 @@ return [
     'Address'  =>  '地址',
     'Start_time'  =>  '开始时间',
     'End_time'  =>  '结束时间',
+    'Content'  =>  '宣讲会描述',
     'Weigh'  =>  '排序（0-999大的靠前',
     'Create_time'  =>  '创建时间',
     'Update_time'  =>  '更新时间',
