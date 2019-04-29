@@ -7,11 +7,11 @@ use app\api\model\Company as CompanyModel;
 
 class Company extends Api
 {
-    protected $noNeedLogin = ['getCompanyList','getCompany'];
+    protected $noNeedLogin = ['*'];
 
     public function getCompanyList(){
         $CompanyModel = new CompanyModel();
-        $list = $CompanyModel->where([])->order('weigh desc,create_time desc')->limit(20)->select();
+        $list = $CompanyModel->where([])->order('weigh desc,create_time desc')->select();
         $this->success('返回成功', $list);
     }
 

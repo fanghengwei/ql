@@ -7,12 +7,12 @@ use app\api\model\Position as PositionModel;
 
 class Position extends Api
 {
-    protected $noNeedLogin = ['getPositionList','getPositionSearchList','getPosition'];
+    protected $noNeedLogin = ['*'];
 
     public function getPositionList(){
         $PositionModel = new PositionModel();
         $where = [];
-        $list = $PositionModel->with(['company'])->where($where)->order('weigh desc,create_time desc')->limit(20)->select();
+        $list = $PositionModel->with(['company'])->where($where)->order('weigh desc,create_time desc')->select();
         $this->success('返回成功', $list);
     }
 
