@@ -7,7 +7,7 @@ use app\api\model\School as SchoolModel;
 
 class School extends Api
 {
-    protected $noNeedRight = ['getSchoolList','getSchool'];
+    protected $noNeedLogin = ['getSchoolList','getSchool'];
 
     public function getSchoolList(){
         $SchoolModel = new SchoolModel();

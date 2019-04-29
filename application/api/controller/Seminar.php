@@ -7,7 +7,7 @@ use app\api\model\Seminar as SeminarModel;
 
 class Seminar extends Api
 {
-    protected $noNeedRight = ['getSeminarList','getSeminar'];
+    protected $noNeedLogin = ['getSeminarList','getSeminar'];
 
     public function getSeminarList(){
         $SeminarModel = new SeminarModel();

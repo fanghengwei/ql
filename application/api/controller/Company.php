@@ -7,7 +7,7 @@ use app\api\model\Company as CompanyModel;
 
 class Company extends Api
 {
-    protected $noNeedRight = ['getCompanyList','getCompany'];
+    protected $noNeedLogin = ['getCompanyList','getCompany'];
 
     public function getCompanyList(){
         $CompanyModel = new CompanyModel();
