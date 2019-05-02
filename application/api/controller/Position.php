@@ -12,7 +12,13 @@ class Position extends Api
     public function getPositionList(){
         $PositionModel = new PositionModel();
         $where = [];
+        $where['publish_time'] = ['<=',date('Y-m-d H:i:s')];
         $list = $PositionModel->with(['company'])->where($where)->order('weigh desc,create_time desc')->select();
+        if($list){
+            foreach ($list as $key => $item) {
+                $list[$key]['publish_time'] = strtotime($item['publish_time']);
+            }
+        }
         $this->success('返回成功', $list);
     }
 
@@ -29,6 +35,9 @@ class Position extends Api
     public function getPosition(){
         $PositionModel = new PositionModel();
         $item = $PositionModel->with(['company'])->where(['position.id'=>input('position_id')])->find();
+        if($item){
+            $item['publish_time'] = strtotime($item['publish_time']);
+        }
         $this->success('返回成功', $item);
     }
 }
