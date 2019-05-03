@@ -13,6 +13,9 @@ class Position extends Api
         $PositionModel = new PositionModel();
         $where = [];
         $where['publish_time'] = ['<=',date('Y-m-d H:i:s')];
+        if(intval(input('company_id'))){
+            $where['company_id'] = intval(input('company_id'));
+        }
         $list = $PositionModel->with(['company'])->where($where)->order('weigh desc,create_time desc')->select();
         if($list){
             foreach ($list as $key => $item) {
