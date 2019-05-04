@@ -6,4 +6,5 @@ use think\Model;
 
 class Resume extends Model
 {
+	
 }
