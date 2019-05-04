@@ -11,7 +11,11 @@ class Seminar extends Api
 
     public function getSeminarList(){
         $SeminarModel = new SeminarModel();
-        $list = $SeminarModel->with(['school'])->where([])->order('weigh desc,create_time desc')->select();
+        $where = [];
+        if(intval(input('school_id'))){
+            $where['school_id'] = intval(input('school_id'));
+        }
+        $list = $SeminarModel->with(['school'])->where($where)->order('weigh desc,create_time desc')->select();
         if($list){
             foreach ($list as $key => $item) {
                 $list[$key]['start_time'] = strtotime($item['start_time']);
