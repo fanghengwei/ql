@@ -4,6 +4,7 @@ namespace app\api\controller;
 
 use app\common\controller\Api;
 use app\api\model\Seminar as SeminarModel;
+use app\api\model\SeminarCollect;
 
 class Seminar extends Api
 {
@@ -29,6 +30,15 @@ class Seminar extends Api
     public function getSeminar(){
         $SeminarModel = new SeminarModel();
         $item = $SeminarModel->with(['school'])->where(['seminar.id'=>input('seminar_id')])->find();
+        if($item){
+            $item['publish_time'] = strtotime($item['publish_time']);
+            $is_fav = SeminarCollect::get(['user_id'=>$this->auth->id,'seminar_id'=>$position_id]);
+            if($is_fav){
+                $item['is_fav'] = 1;
+            }else{
+                $item['is_fav'] = 0;
+            }
+        }
         $this->success('返回成功', $item);
     }
 }
