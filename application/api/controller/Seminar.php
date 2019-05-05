@@ -16,6 +16,9 @@ class Seminar extends Api
         if(intval(input('school_id'))){
             $where['school_id'] = intval(input('school_id'));
         }
+        if(input('name')){
+            $where['title'] = ['like',"%".input('name')."%"];
+        }
         $list = $SeminarModel->with(['school'])->where($where)->order('weigh desc,create_time desc')->select();
         if($list){
             foreach ($list as $key => $item) {
@@ -24,15 +27,17 @@ class Seminar extends Api
             }
             $this->success('返回成功', $list);
         }
-        $this->error('返回失败');
+        $this->error('返回失败','');
     }
 
     public function getSeminar(){
+        $user_id = $this->auth->id?$this->auth->id:0;
         $SeminarModel = new SeminarModel();
         $item = $SeminarModel->with(['school'])->where(['seminar.id'=>input('seminar_id')])->find();
         if($item){
-            $item['publish_time'] = strtotime($item['publish_time']);
-            $is_fav = SeminarCollect::get(['user_id'=>$this->auth->id,'seminar_id'=>$position_id]);
+            $item['start_time'] = strtotime($item['start_time']);
+            $item['end_time'] = strtotime($item['end_time']);
+            $is_fav = SeminarCollect::get(['user_id'=>$user_id,'seminar_id'=>input('seminar_id')]);
             if($is_fav){
                 $item['is_fav'] = 1;
             }else{
