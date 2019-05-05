@@ -17,7 +17,11 @@ class Positioncollect extends Api
 
     public function getPositionList(){
         $list = $this->model->with(['company','position'])->order('create_time desc')->select();
-        $this->success('返回成功', $list);
+        $result = [];
+        foreach ($list as $key => $item) {
+            $result[] = $item['position'];
+        }
+        $this->success('返回成功', $result);
     }
 
     public function addPosition(){

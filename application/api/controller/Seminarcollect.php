@@ -17,7 +17,11 @@ class Seminarcollect extends Api
 
     public function getSeminarList(){
         $list = $this->model->with(['school','seminar'])->order('create_time desc')->select();
-        $this->success('返回成功', $list);
+        $result = [];
+        foreach ($list as $key => $item) {
+            $result[] = $item['seminar'];
+        }
+        $this->success('返回成功', $result);
     }
 
     public function addSeminar(){
