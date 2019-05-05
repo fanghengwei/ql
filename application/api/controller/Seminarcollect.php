@@ -18,8 +18,10 @@ class Seminarcollect extends Api
     public function getSeminarList(){
         $list = $this->model->with(['school','seminar'])->where(['user_id'=>$this->auth->id])->order('create_time desc')->select();
         $result = [];
-        foreach ($list as $key => $item) {
-            $result[] = $item['seminar'];
+        if($list){
+            foreach ($list as $key => $item) {
+                $result[] = $item['seminar'];
+            }
         }
         $this->success('返回成功', $result);
     }
@@ -34,7 +36,7 @@ class Seminarcollect extends Api
         if(!$result){
             $this->model->save(['user_id'=>$this->auth->id,'school_id'=>$seminar['school_id'],'seminar_id'=>intval(input('seminar_id')),'create_time'=>date("Y-m-d H:i:s"),'update_time'=>date("Y-m-d H:i:s")]);
         }
-        $this->success('返回成功');
+        $this->success('返回成功','');
     }
 
     public function delSeminar(){
@@ -47,7 +49,7 @@ class Seminarcollect extends Api
         if($result){
             $this->model->where(['user_id'=>$this->auth->id,'school_id'=>$seminar['school_id'],'seminar_id'=>intval(input('seminar_id'))])->delete();
         }
-        $this->success('返回成功');
+        $this->success('返回成功','');
 
     }
 }
