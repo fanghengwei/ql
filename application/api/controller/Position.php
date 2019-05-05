@@ -56,6 +56,18 @@ class Position extends Api
         $item = $PositionModel->with(['company'])->where(['position.id'=>input('position_id')])->find();
         if($item){
             $item['publish_time'] = strtotime($item['publish_time']);
+            $is_fav = \app\api\model\PositionCollect::get(['user_id'=>$this->auth->id,'position_id'=>$position_id]);
+            if($is_fav){
+                $item['is_fav'] = 1;
+            }else{
+                $item['is_fav'] = 0;
+            }
+            $is_send = \app\api\model\Resumesend::get(['user_id'=>$this->auth->id,'position_id'=>$position_id]);
+            if($is_send){
+                $item['is_send'] = 1;
+            }else{
+                $item['is_send'] = 0;
+            }
         }
         $this->success('返回成功', $item);
     }
