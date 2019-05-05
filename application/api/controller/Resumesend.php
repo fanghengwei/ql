@@ -4,22 +4,23 @@ namespace app\api\controller;
 
 use app\common\controller\Api;
 
-class Seminarcollect extends Api
+class Resumesend extends Api
 {
+    protected $noNeedLogin = ['*'];
     protected $noNeedRight = ['*'];
     protected $model = null;
 
     public function _initialize()
     {
         parent::_initialize();
-        $this->model = model('SeminarCollect');
+        $this->model = model('ResumeSend');
     }
 
-    public function getSeminarList(){
-        $list = $this->model->with(['school','seminar'])->where(['user_id'=>$this->auth->id])->order('create_time desc')->select();
+    public function getResumeList(){
+        $list = $this->model->with(['position'])->order('id desc')->select();
         $result = [];
         foreach ($list as $key => $item) {
-            $result[] = $item['seminar'];
+            $result[] = $item['position'];
         }
         $this->success('返回成功', $result);
     }

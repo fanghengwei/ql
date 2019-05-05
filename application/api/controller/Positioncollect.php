@@ -16,7 +16,7 @@ class Positioncollect extends Api
     }
 
     public function getPositionList(){
-        $list = $this->model->with(['company','position'])->order('create_time desc')->select();
+        $list = $this->model->with(['company','position'])->where(['user_id'=>$this->auth->id])->order('create_time desc')->select();
         $result = [];
         foreach ($list as $key => $item) {
             $item['position']['publish_time'] = strtotime($item['position']['publish_time']);

@@ -7,7 +7,7 @@ use app\api\model\Resume as ResumeModel;
 
 class Resume extends Api
 {
-    protected $noNeedLogin = ['*'];
+    protected $noNeedRight = ['*'];
 
     public function getResume(){
         $data = [];
