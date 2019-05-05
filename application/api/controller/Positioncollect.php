@@ -19,6 +19,7 @@ class Positioncollect extends Api
         $list = $this->model->with(['company','position'])->order('create_time desc')->select();
         $result = [];
         foreach ($list as $key => $item) {
+            $item['position']['publish_time'] = strtotime($item['position']['publish_time']);
             $result[] = $item['position'];
         }
         $this->success('返回成功', $result);
