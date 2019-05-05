@@ -160,31 +160,37 @@ function getSalary($id = 'all'){
         1=>[
             'salary_id'=>1,
             'salary_name'=>'1千以下',
+            'value'=>['position.salary_max'=>['<',1000]],
         ],
         2=>[
             'salary_id'=>2,
             'salary_name'=>'1-2千',
+            'value'=>['position.salary_min'=>['<',2000],'position.salary_max'=>['>=',1000]],
         ],
         3=>[
             'salary_id'=>3,
             'salary_name'=>'2-3千',
+            'value'=>['position.salary_min'=>['<',3000],'position.salary_max'=>['>=',2000]],
         ],
         4=>[
             'salary_id'=>4,
             'salary_name'=>'3-4千',
+            'value'=>['position.salary_min'=>['<',4000],'position.salary_max'=>['>=',3000]],
         ],
         5=>[
             'salary_id'=>5,
             'salary_name'=>'4-5千',
+            'value'=>['position.salary_min'=>['<',5000],'position.salary_max'=>['>=',4000]],
         ],
         6=>[
             'salary_id'=>6,
             'salary_name'=>'5千以上',
+            'value'=>['position.salary_max'=>['>',5000]],
         ],
     ];
     if($id=='all'){
         return $salary_list;
     }else{
-        return $salary_list[$id]['salary_name'];
+        return $salary_list[$id]['value'];
     }
 }

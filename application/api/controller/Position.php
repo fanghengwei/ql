@@ -16,13 +16,29 @@ class Position extends Api
         if(intval(input('company_id'))){
             $where['company_id'] = intval(input('company_id'));
         }
+        if(input('location')){
+            $where['position.location'] = input('location');
+        }
+        if(input('industry_id')){
+            $where['position.industry'] = getIndustry(input('industry_id'));
+        }
+        if(input('company_type_id')){
+            $where['company.company_type'] = getCompanyType(input('company_type_id'));
+        }
+        if(input('company_scale_id')){
+            $where['company.company_scale'] = getCompanyScale(input('company_scale_id'));
+        }
+        if(input('salary_id')){
+            $where = array_merge($where,getSalary(input('salary_id')));
+        }
         $list = $PositionModel->with(['company'])->where($where)->order('weigh desc,create_time desc')->select();
         if($list){
             foreach ($list as $key => $item) {
                 $list[$key]['publish_time'] = strtotime($item['publish_time']);
             }
+            $this->success('返回成功', $list);
         }
-        $this->success('返回成功', $list);
+        $this->error('返回失败');
     }
 
     public function getPositionSearchList(){

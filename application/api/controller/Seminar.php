@@ -21,8 +21,9 @@ class Seminar extends Api
                 $list[$key]['start_time'] = strtotime($item['start_time']);
                 $list[$key]['end_time'] = strtotime($item['end_time']);
             }
+            $this->success('返回成功', $list);
         }
-        $this->success('返回成功', $list);
+        $this->error('返回失败');
     }
 
     public function getSeminar(){
