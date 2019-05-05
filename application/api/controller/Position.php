@@ -33,6 +33,9 @@ class Position extends Api
         if(input('salary_id')){
             $where = array_merge($where,getSalary(input('salary_id')));
         }
+        if(input('name')){
+            $where['position.title'] = ['like',"%".input('name')."%"];
+        }
         $list = $PositionModel->with(['company'])->where($where)->order('weigh desc,create_time desc')->select();
         if($list){
             foreach ($list as $key => $item) {

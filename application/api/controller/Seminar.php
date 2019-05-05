@@ -17,7 +17,7 @@ class Seminar extends Api
             $where['school_id'] = intval(input('school_id'));
         }
         if(input('name')){
-            $where['title'] = ['like',"%".input('name')."%"];
+            $where['seminar.name'] = ['like',"%".input('name')."%"];
         }
         $list = $SeminarModel->with(['school'])->where($where)->order('weigh desc,create_time desc')->select();
         if($list){
