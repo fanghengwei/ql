@@ -20,6 +20,8 @@ class Seminarcollect extends Api
         $result = [];
         if($list){
             foreach ($list as $key => $item) {
+                $item['seminar']['start_time'] = strtotime($item['seminar']['start_time']);
+                $item['seminar']['end_time'] = strtotime($item['seminar']['end_time']);
                 $result[] = $item['seminar'];
             }
         }
