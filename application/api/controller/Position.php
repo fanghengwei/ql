@@ -4,6 +4,8 @@ namespace app\api\controller;
 
 use app\common\controller\Api;
 use app\api\model\Position as PositionModel;
+use app\api\model\PositionCollect;
+use app\api\model\ResumeSend;
 
 class Position extends Api
 {
@@ -52,17 +54,18 @@ class Position extends Api
     }
 
     public function getPosition(){
+        $user_id = $this->auth->id?$this->auth->id:0;
         $PositionModel = new PositionModel();
         $item = $PositionModel->with(['company'])->where(['position.id'=>input('position_id')])->find();
         if($item){
             $item['publish_time'] = strtotime($item['publish_time']);
-            $is_fav = \app\api\model\PositionCollect::get(['user_id'=>$this->auth->id,'position_id'=>$position_id]);
+            $is_fav = PositionCollect::get(['user_id'=>$user_id,'position_id'=>input('position_id')]);
             if($is_fav){
                 $item['is_fav'] = 1;
             }else{
                 $item['is_fav'] = 0;
             }
-            $is_send = \app\api\model\Resumesend::get(['user_id'=>$this->auth->id,'position_id'=>$position_id]);
+            $is_send = ResumeSend::get(['user_id'=>$user_id,'position_id'=>input('position_id')]);
             if($is_send){
                 $item['is_send'] = 1;
             }else{
