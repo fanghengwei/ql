@@ -77,4 +77,10 @@ class Position extends Api
         }
         $this->success('返回成功', $item);
     }
+
+    public function getAreaList(){
+        $PositionModel = new PositionModel();
+        $item = $PositionModel->field('location')->group('location')->select();
+        $this->success('返回成功', $item);
+    }
 }
