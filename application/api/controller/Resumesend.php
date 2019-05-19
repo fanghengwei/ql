@@ -30,9 +30,10 @@ class Resumesend extends Api
     public function addResume(){
         $user_id = $this->auth->id;
         $position_id = intval(input('position_id'));
+        $position = \app\api\model\Resume::get(['id'=>$position_id]);
         $resumesend = \app\api\model\ResumeSend::get(['user_id'=>$user_id,'position_id'=>$position_id]);
         if(!$resumesend){
-            $this->model->save(['user_id'=>$this->auth->id,'position_id'=>$position_id]);
+            $this->model->save(['user_id'=>$this->auth->id,'position_id'=>$position_id,'company_id'=>$position['company_id']]);
         }
         $this->success('返回成功','');
     }
