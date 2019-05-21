@@ -163,6 +163,8 @@ class User extends Api
         $nickname = $this->request->request('nickname');
         $bio = $this->request->request('bio');
         $avatar = $this->request->request('avatar');
+        $email = $this->request->request('email');
+        $mobile = $this->request->request('mobile');
         $exists = \app\common\model\User::where('username', $username)->where('id', '<>', $this->auth->id)->find();
         if ($exists)
         {
@@ -172,6 +174,8 @@ class User extends Api
         $user->nickname = $nickname;
         $user->bio = $bio;
         $user->avatar = $avatar;
+        $user->email = $email;
+        $user->mobile = $mobile;
         $user->save();
         $this->success();
     }
@@ -297,49 +301,49 @@ class User extends Api
     {
         $type = $this->request->request("type");
         $mobile = $this->request->request("mobile");
-        $email = $this->request->request("email");
+        $username = $this->request->request("username");
         $newpassword = $this->request->request("newpassword");
-        $captcha = $this->request->request("captcha");
-        if (!$newpassword || !$captcha)
-        {
-            $this->error(__('Invalid parameters'));
-        }
-        if ($type == 'mobile')
-        {
-            if (!Validate::regex($mobile, "^1\d{10}$"))
-            {
-                $this->error(__('Mobile is incorrect'));
-            }
-            $user = \app\common\model\User::getByMobile($mobile);
+//        $captcha = $this->request->request("captcha");
+//        if (!$newpassword || !$captcha)
+//        {
+//            $this->error(__('Invalid parameters'));
+//        }
+//        if ($type == 'mobile')
+//        {
+//            if (!Validate::regex($mobile, "^1\d{10}$"))
+//            {
+//                $this->error(__('Mobile is incorrect'));
+//            }
+//            $user = \app\common\model\User::getByMobile($mobile);
+//            if (!$user)
+//            {
+//                $this->error(__('User not found'));
+//            }
+//            $ret = Sms::check($mobile, $captcha, 'resetpwd');
+//            if (!$ret)
+//            {
+//                $this->error(__('Captcha is incorrect'));
+//            }
+//            Sms::flush($mobile, 'resetpwd');
+//        }
+//        else
+//        {
+//            if (!Validate::is($email, "email"))
+//            {
+//                $this->error(__('Email is incorrect'));
+//            }
+            $user = \app\common\model\User::getByUsername($username);
             if (!$user)
             {
                 $this->error(__('User not found'));
             }
-            $ret = Sms::check($mobile, $captcha, 'resetpwd');
-            if (!$ret)
-            {
-                $this->error(__('Captcha is incorrect'));
-            }
-            Sms::flush($mobile, 'resetpwd');
-        }
-        else
-        {
-            if (!Validate::is($email, "email"))
-            {
-                $this->error(__('Email is incorrect'));
-            }
-            $user = \app\common\model\User::getByEmail($email);
-            if (!$user)
-            {
-                $this->error(__('User not found'));
-            }
-            $ret = Ems::check($email, $captcha, 'resetpwd');
-            if (!$ret)
-            {
-                $this->error(__('Captcha is incorrect'));
-            }
-            Ems::flush($email, 'resetpwd');
-        }
+//            $ret = Ems::check($email, $captcha, 'resetpwd');
+//            if (!$ret)
+//            {
+//                $this->error(__('Captcha is incorrect'));
+//            }
+//            Ems::flush($email, 'resetpwd');
+//        }
         //模拟一次登录
         $this->auth->direct($user->id);
         $ret = $this->auth->changepwd($newpassword, '', true);
