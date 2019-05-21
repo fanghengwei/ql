@@ -161,18 +161,18 @@ class User extends Api
         $user = $this->auth->getUser();
         $username = $this->request->request('username');
         $nickname = $this->request->request('nickname');
-        $bio = $this->request->request('bio');
+//        $bio = $this->request->request('bio');
         $avatar = $this->request->request('avatar');
         $email = $this->request->request('email');
         $mobile = $this->request->request('mobile');
-        $exists = \app\common\model\User::where('username', $username)->where('id', '<>', $this->auth->id)->find();
+        $exists = \app\common\model\User::where('id', '<>', $this->auth->id)->find();
         if ($exists)
         {
             $this->error(__('Username already exists'));
         }
-        $user->username = $username;
+//        $user->username = $username;
         $user->nickname = $nickname;
-        $user->bio = $bio;
+//        $user->bio = $bio;
         $user->avatar = $avatar;
         $user->email = $email;
         $user->mobile = $mobile;
